@@ -108,3 +108,10 @@ venv.bak/
 .idea/*
 *.idea
 .idea*
+
+# django misc
+*.sqlite3
+*.sqlite
+migrations/
+staticfiles/
+media/
