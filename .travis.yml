@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.6"
+dist: trusty
+before_install:
+  - export DJANGO_SETTINGS_MODULE=freelancing-solutions.settings
+install:
+  - pip3 install coveralls
+  - pip3 install pipenv
+  - pip3 install flake8
+  - pipenv install
+script:
+  - cd src
+  - source "$(pipenv --venv)"/bin/activate
+  - flake8 .
+  - python3 manage.py makemigrations
+  - python3 manage.py migrate
+  - coverage run manage.py test
