@@ -24,7 +24,7 @@ class Job(models.Model):
         return self.title
 
     @property
-    def get_average_big(self):
+    def get_average_bid(self):
         return Bid.objects.all().filter(job=self).amount.average()
 
     def get_price_range(self):
@@ -48,6 +48,8 @@ class Bid(models.Model):
     description = models.TextField()
     additional_description = models.TextField(null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
+    accepted = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False)
     rating = models.IntegerField(choices=RATINGS, default=0)
 
     def __str__(self):
