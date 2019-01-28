@@ -26,4 +26,10 @@ class Bid(models.Model):
     job = models.ForeignKey(Job, null=True, on_delete=models.SET_NULL)
     freelancer = models.ForeignKey(Freelancer, null=True, on_delete=models.SET_NULL)
     # Add tests for currency checks
-    bid_amount = models.DecimalField(max_digits=8, decimal_places=2)
+    amount = MoneyField()
+    description = models.TextField()
+    additional_description = models.TextField(null=True, blank=True)
+    comments = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.job.title + " (" + self.freelancer.user.get_full_name() + ")"
