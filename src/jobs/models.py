@@ -32,6 +32,14 @@ class Job(models.Model):
 
 
 class Bid(models.Model):
+    RATINGS = (
+        (0, 'NA'),
+        (1, 'Very Poor'),
+        (2, 'Poor'),
+        (3, 'Average'),
+        (4, 'Good'),
+        (5, 'Excellent'),
+    )
     # Foreign key to a freelancer and employer
     job = models.ForeignKey(Job, null=True, on_delete=models.SET_NULL)
     freelancer = models.ForeignKey(Freelancer, null=True, on_delete=models.SET_NULL)
@@ -40,6 +48,7 @@ class Bid(models.Model):
     description = models.TextField()
     additional_description = models.TextField(null=True, blank=True)
     comments = models.TextField(null=True, blank=True)
+    rating = models.IntegerField(choices=RATINGS, default=0)
 
     def __str__(self):
         return self.job.title + " (" + self.freelancer.user.get_full_name() + ")"
