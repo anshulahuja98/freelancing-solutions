@@ -1,5 +1,14 @@
 from django.db import models
 from accounts.models import Freelancer, Employer
+from .fields import MoneyField
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=128)
+    abbr = models.CharField(max_length=12)
+
+    def __str__(self):
+        return self.abbr
 
 
 class Job(models.Model):
