@@ -8,3 +8,10 @@ class SkillAdmin(admin.ModelAdmin):
         model = Skill
         fields = '__all__'
 
+
+@admin.register(Job)
+class JobAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Job
+        fields = '__all__'
+
