@@ -13,6 +13,12 @@ class Skill(models.Model):
 
 class Job(models.Model):
     employer = models.ForeignKey(Employer, null=True, on_delete=models.SET_NULL)
+    title = models.CharField(max_length=128)
+    description = models.TextField()
+    skills_required = models.ManyToManyField(Skill, default=None)
+    # Price range
+    minimum_price = MoneyField(null=True, blank=True)
+    maximum_price = MoneyField()
 
 
 class Bid(models.Model):
