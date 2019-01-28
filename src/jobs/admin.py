@@ -15,3 +15,9 @@ class JobAdmin(admin.ModelAdmin):
         model = Job
         fields = '__all__'
 
+
+@admin.register(Bid)
+class BidAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Bid
+        fields = '__all__'
