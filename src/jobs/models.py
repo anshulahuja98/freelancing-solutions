@@ -20,6 +20,16 @@ class Job(models.Model):
     minimum_price = MoneyField(null=True, blank=True)
     maximum_price = MoneyField()
 
+    def __str__(self):
+        return self.title
+
+    @property
+    def get_average_big(self):
+        return Bid.objects.all().filter(job=self).amount.average()
+
+    def get_price_range(self):
+        return self.minimum_price + '-' + self.maximum_price
+
 
 class Bid(models.Model):
     # Foreign key to a freelancer and employer
