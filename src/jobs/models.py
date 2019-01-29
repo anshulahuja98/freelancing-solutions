@@ -24,7 +24,7 @@ class Job(models.Model):
         return self.title
 
     @property
-    def get_average_big(self):
+    def get_average_bid(self):
         return Bid.objects.all().filter(job=self).amount.average()
 
     def get_price_range(self):
