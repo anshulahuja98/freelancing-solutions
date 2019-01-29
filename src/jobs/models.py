@@ -1,11 +1,11 @@
 from django.db import models
 from accounts.models import Freelancer, Employer
-from .fields import MoneyField
+from .fields import MoneyField,RatingField
 
 
 class Skill(models.Model):
     name = models.CharField(max_length=128)
-    abbr = models.CharField(max_length=12)
+    abbr = models.CharField(max_length=12, verbose_name="Abbreviation")
 
     def __str__(self):
         return self.abbr
@@ -32,14 +32,6 @@ class Job(models.Model):
 
 
 class Bid(models.Model):
-    RATINGS = (
-        (0, 'NA'),
-        (1, 'Very Poor'),
-        (2, 'Poor'),
-        (3, 'Average'),
-        (4, 'Good'),
-        (5, 'Excellent'),
-    )
     # Foreign key to a freelancer and employer
     job = models.ForeignKey(Job, null=True, on_delete=models.SET_NULL)
     freelancer = models.ForeignKey(Freelancer, null=True, on_delete=models.SET_NULL)
@@ -50,7 +42,7 @@ class Bid(models.Model):
     comments = models.TextField(null=True, blank=True)
     accepted = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
-    rating = models.IntegerField(choices=RATINGS, default=0)
+    rating = RatingField()
 
     def __str__(self):
         return self.job.title + " (" + self.freelancer.user.get_full_name() + ")"
