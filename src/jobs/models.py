@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import Freelancer, Employer
-from .fields import MoneyField,RatingField
+from .fields import MoneyField, RatingField
 
 
 class Skill(models.Model):

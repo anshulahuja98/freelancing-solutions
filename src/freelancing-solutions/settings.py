@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'freelancer.apps.FreelancerConfig',
     'employer.apps.EmployerConfig',
-    'jobs.apps.JobsConfig'
+    'jobs.apps.JobsConfig',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
