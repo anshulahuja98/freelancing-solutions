@@ -16,7 +16,7 @@ class SkillAdmin(admin.ModelAdmin):
 class JobAdmin(admin.ModelAdmin):
     class Meta:
         model = Job
-        # All fields of Skill
+        # All fields of Job
         fields = '__all__'
 
 
@@ -25,5 +25,5 @@ class JobAdmin(admin.ModelAdmin):
 class BidAdmin(admin.ModelAdmin):
     class Meta:
         model = Bid
-        # All fields of Skill
+        # All fields of Bid
         fields = '__all__'
