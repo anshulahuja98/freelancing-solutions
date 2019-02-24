@@ -1,6 +1,6 @@
 from django.db import models
-from accounts.models import Freelancer, Employer
-from .fields import MoneyField, RatingField
+from accounts.models import Freelancer, Employer  # Import Freelancer and Employer modules from accounts
+from .fields import MoneyField, RatingField  # Import custom Money and Rating fields from fields.py
 
 
 # Module for handling skills of various freelancers

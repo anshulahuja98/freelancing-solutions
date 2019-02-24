@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
-from django.core.validators import RegexValidator
+from django.contrib.auth.models import \
+    User  # Refers to django's inbuilt auth User for handling authentication and basic details
+from django.core.validators import RegexValidator  # Regex validator module
 from django_countries.fields import CountryField
 
 
