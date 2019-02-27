@@ -7,11 +7,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     {% block metatags %}
-    <meta property="og:title" content="Freelancing Solutions"/>
-    <meta property="og:type" content="software_engineering_project"/>
-    <meta property="og:url" content="https://freelancingsolutions.org/"/>
-    <meta property="og:description" content="Freelancing Solutions"/>
-    <meta property="og:site_name" content="Freelancing Solutions"/>
+        <meta property="og:title" content="Freelancing Solutions"/>
+        <meta property="og:type" content="software_engineering_project"/>
+        <meta property="og:url" content="https://freelancingsolutions.org/"/>
+        <meta property="og:description" content="Freelancing Solutions"/>
+        <meta property="og:site_name" content="Freelancing Solutions"/>
     {% endblock %}
 
 
@@ -181,10 +181,21 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">SignUp</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'accounts:login' %}" class="nav-link">
+                    {% else %}
+                        <a href="{% url 'accounts:freelancer-register' %}" class="nav-link">>
+                    {% endif %}Freelancer</a>
+                </li>
+                <li class="nav-item">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'accounts:login' %}" class="nav-link">
+                    {% else %}
+                        <a href="{% url 'accounts:employer-register' %}" class="nav-link">>
+                    {% endif %}Employer</a>
                 </li>
                 <!--<li class="nav-item avatar">-->
                 <!--<a class="nav-link p-0" href="#">-->
@@ -206,22 +217,16 @@
 
 <!-- Footer -->
 {% block footer %}
-<footer class="footer text-center" style="height: 10vh; margin-right: 0vw;">
-    <div class="container" style="height: 10vh; margin-right: 0vw;">
-        <div class="row float-right">
-            {% include "main/mixins/social_links_mixin.html" %}
+    <footer class="footer text-center" style="height: 10vh; margin-right: 0vw;">
+        <div class="container" style="height: 10vh; margin-right: 0vw;">
+            <div class="row float-right">
+                {% include "main/mixins/social_links_mixin.html" %}
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 {% endblock %}
 <!-- /Footer -->
 
-<!--&lt;!&ndash; Scroll to Top Button (Only visible on small and extra-small screen sizes) &ndash;&gt;-->
-<!--<div class="scroll-to-top d-lg-none position-fixed ">-->
-<!--<a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">-->
-<!--<i class="fa fa-chevron-up"></i>-->
-<!--</a>-->
-<!--</div>-->
 
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
