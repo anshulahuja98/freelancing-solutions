@@ -37,3 +37,10 @@ class FreelancerRegisterForm(AbstractRegisterForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'password1', 'password2']
 
+
+class EmployerRegisterForm(AbstractRegisterForm):
+    # profile_image = forms.ImageField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'password1', 'password2', ]
