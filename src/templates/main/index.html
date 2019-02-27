@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block main %}
+<div class="container-fluid text-center " style="padding-top: 15vh;">
+        <div class="mb-2"></div>
+        <div class="heading1">Freelancing Solutions</div>
+        <div class="heading2 pt-3">Hire expert freelancers for any <br>job, online</div>
+        <!--Buttons-->
+        <div class="btn-group my-5" role="group" aria-label="Buttons">
+            <button type="button" class="btn btn-rounded waves-effect button-fs"
+                    style="background-color: var(--btn-bg-color);"><i
+                    class="fab fa-hire-a-helper fa-sm pr-2 button-fs"
+                    aria-hidden="true"></i>
+                I want to Hire
+            </button>
+            <button type="button" class="btn btn-rounded waves-effect button-fs"
+                    style="background-color: var(--btn-bg-color);"><i
+                    class="fas fa-briefcase fa-sm pr-2  button-fs"
+                    aria-hidden="true"></i>
+                I want to Work
+            </button>
+        </div>
+    </div>
+{% endblock %}
