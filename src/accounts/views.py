@@ -2,6 +2,7 @@ from django.views.generic import CreateView
 from .models import Freelancer, Employer
 from .forms import FreelancerRegisterForm, EmployerRegisterForm
 from django.contrib.auth.views import LoginView as DefaultLoginView
+from django.shortcuts import reverse
 
 
 class LoginView(DefaultLoginView):
@@ -9,8 +10,15 @@ class LoginView(DefaultLoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        url = "dashboard/"
-        return url
+        url = super().get_redirect_url()
+        if hasattr(self.request.user, 'employer'):
+            return url or reverse('employer:dashboard')
+        elif hasattr(self.request.user, 'freelancer'):
+            return url or reverse('freelancer:dashboard')
+        elif self.request.user.is_staff:
+            return url or '/admin'
+        else:
+            return url
 
 
 class FreelancerRegisterFormView(CreateView):
