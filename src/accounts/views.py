@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 from django.views.generic import CreateView
 from .models import Freelancer, Employer
 from .forms import FreelancerRegisterForm, EmployerRegisterForm
@@ -37,3 +36,26 @@ class FreelancerRegisterFormView(CreateView):
                                                 )
         userprofile.save()
 
+
+class EmployerRegisterFormView(CreateView):
+    model = Employer
+    form_class = EmployerRegisterForm
+    template_name = 'accounts/employer-register.html'
+    success_url = '/accounts/login/'
+
+    def form_valid(self, form):
+        user = form.save()
+        self.create_profile(user, **form.cleaned_data)
+        return super(EmployerRegisterFormView, self).form_valid(form)
+
+    @staticmethod
+    def create_profile(user=None, **kwargs):
+        # Creates a new UserProfile object after successful creation of User object
+        userprofile = Employer.objects.create(user=user,
+                                              mobile=kwargs['mobile'],
+                                              description=kwargs['description'],
+                                              address=kwargs['address'],
+                                              country=kwargs['country'],
+                                              # profile_image=kwargs['profile_image'],
+                                              )
+        userprofile.save()
