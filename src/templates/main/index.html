@@ -8,7 +8,7 @@
         <!--Buttons-->
         <div class="btn-group my-5" role="group" aria-label="Buttons">
             {% if user.is_authenticated %}
-                <a href="{% url 'accounts:login' %}">
+                <a href="{% url 'employer:dashboard' %}">
             {% else %}
                 <a href="{% url 'accounts:employer-register' %}">
             {% endif %}
@@ -20,7 +20,7 @@
             </button>
             </a>
             {% if user.is_authenticated %}
-                <a href="{% url 'accounts:login' %}">
+                <a href="{% url 'freelancer:dashboard' %}">
             {% else %}
                 <a href="{% url 'accounts:freelancer-register' %}">
             {% endif %}
