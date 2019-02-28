@@ -19,8 +19,8 @@ class AbstractRegisterForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         help_text='Enter the same password as before, for verification.',
     )
-    email_valid = RegexValidator(r'^.+@.+\..+$', message='Invalid email ID')
-    username = forms.CharField(help_text="Enter your email ID", validators=[email_valid])
+    # email_valid = RegexValidator(r'^.+@.+\..+$', message='Invalid email ID')
+    # email = forms.CharField(validators=[email_valid])
     mobile_num_valid = RegexValidator(r'^\+?1?\d{9,15}$', message='Invalid mobile number.')
     mobile = forms.CharField(max_length=15, validators=[mobile_num_valid])
     description = forms.CharField(widget=forms.Textarea)
@@ -35,7 +35,7 @@ class FreelancerRegisterForm(AbstractRegisterForm):
     # profile_image = forms.ImageField()
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'password1', 'password2', 'email']
 
 
 class EmployerRegisterForm(AbstractRegisterForm):
@@ -43,4 +43,4 @@ class EmployerRegisterForm(AbstractRegisterForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'password1', 'password2', ]
+        fields = ['username', 'first_name', 'last_name', 'password1', 'password2', 'email']
