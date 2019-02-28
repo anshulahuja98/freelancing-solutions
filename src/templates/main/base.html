@@ -7,11 +7,11 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     {% block metatags %}
-        <meta property="og:title" content="Freelancing Solutions"/>
-        <meta property="og:type" content="software_engineering_project"/>
-        <meta property="og:url" content="https://freelancingsolutions.org/"/>
-        <meta property="og:description" content="Freelancing Solutions"/>
-        <meta property="og:site_name" content="Freelancing Solutions"/>
+    <meta property="og:title" content="Freelancing Solutions"/>
+    <meta property="og:type" content="software_engineering_project"/>
+    <meta property="og:url" content="https://freelancingsolutions.org/"/>
+    <meta property="og:description" content="Freelancing Solutions"/>
+    <meta property="og:site_name" content="Freelancing Solutions"/>
     {% endblock %}
 
 
@@ -149,6 +149,22 @@
             border-top-left-radius: 10em;
             border-bottom-left-radius: 10em;
         }
+
+        select, textarea, input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            border: 0;
+            border-bottom: var(--main-bg-color) 2px solid;
+        }
+
+        textarea {
+            border: var(--main-bg-color) 1px solid;
+            border-bottom: var(--main-bg-color) 2px solid;
+
+        }
+
+        form > ul > li {
+            font-size: 0.75rem;
+        }
     </style>
 </head>
 <body class="text-white" style="background-color: var(--main-bg-color)">
@@ -156,7 +172,7 @@
 <header>
     <!--Navbar -->
     <nav class="mb-1 navbar navbar-expand-lg navbar-dark lighten-1" style="color: var(--main-bg-color)">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="{% static 'assets/freelancing_logo.png' %}" style="height: 5vh;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
@@ -166,7 +182,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="/">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -179,30 +195,24 @@
             </ul>
 
             <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                </li>
+                <li class="nav-item avatar">
+                    <a class="nav-link p-0" href="#">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                             class="rounded-circle z-depth-0" alt="avatar image" height="35">
+                    </a>
+                </li>
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
                 </li>
-                <li class="nav-item">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'accounts:login' %}" class="nav-link">
-                    {% else %}
-                        <a href="{% url 'accounts:freelancer-register' %}" class="nav-link">>
-                    {% endif %}Freelancer</a>
-                </li>
-                <li class="nav-item">
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'accounts:login' %}" class="nav-link">
-                    {% else %}
-                        <a href="{% url 'accounts:employer-register' %}" class="nav-link">>
-                    {% endif %}Employer</a>
-                </li>
-                <!--<li class="nav-item avatar">-->
-                <!--<a class="nav-link p-0" href="#">-->
-                <!--<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"-->
-                <!--class="rounded-circle z-depth-0" alt="avatar image" height="35">-->
-                <!--</a>-->
-                <!--</li>-->
+                {% endif %}
+
+
             </ul>
         </div>
     </nav>
@@ -217,13 +227,13 @@
 
 <!-- Footer -->
 {% block footer %}
-    <footer class="footer text-center" style="height: 10vh; margin-right: 0vw;">
-        <div class="container" style="height: 10vh; margin-right: 0vw;">
-            <div class="row float-right">
-                {% include "main/mixins/social_links_mixin.html" %}
-            </div>
+<footer class="footer text-center" style="height: 10vh; margin-right: 0vw;">
+    <div class="container" style="height: 10vh; margin-right: 0vw;">
+        <div class="row float-right">
+            {% include "main/mixins/social_links_mixin.html" %}
         </div>
-    </footer>
+    </div>
+</footer>
 {% endblock %}
 <!-- /Footer -->
 
