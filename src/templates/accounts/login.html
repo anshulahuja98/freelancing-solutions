@@ -1,10 +1,61 @@
 {% extends 'main/base.html' %}
 {% block main %}
-    <form method="post">
-        Login
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-{#    {{ form }}#}
+ <!-- Material form login -->
+    <div class="card mx-auto col-10 col-md-8 col-lg-6 mt-5">
+
+        <h5 class="white-skin text-center py-4 heading3" style="color: var(--main-bg-color)">
+            <strong>Sign in</strong>
+        </h5>
+
+        <!--Card content-->
+        <div class="card-body px-5 pt-0">
+
+            <!-- Form -->
+            <form class="text-center" method="post">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+                <!--&lt;!&ndash; Email &ndash;&gt;-->
+                <!--<div class="md-form">-->
+                    <!--<input type="email" id="materialLoginFormEmail" class="form-control">-->
+                    <!--<label for="materialLoginFormEmail">E-mail</label>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash; Password &ndash;&gt;-->
+                <!--<div class="md-form">-->
+                    <!--<input type="password" id="materialLoginFormPassword" class="form-control">-->
+                    <!--<label for="materialLoginFormPassword">Password</label>-->
+                <!--</div>-->
+
+                <!--<div class="d-flex justify-content-around">-->
+                    <!--<div>-->
+                        <!--&lt;!&ndash; Remember me &ndash;&gt;-->
+                        <!--<div class="form-check">-->
+                            <!--<input type="checkbox" class="form-check-input" id="materialLoginFormRemember">-->
+                            <!--<label class="form-check-label" for="materialLoginFormRemember">Remember me</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--&lt;!&ndash; Forgot password &ndash;&gt;-->
+                        <!--<a href="">Forgot password?</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!-- Sign in button -->
+                <button class="btn btn-rounded btn-block my-3 waves-effect z-depth-0 col-8 mx-auto" type="submit"
+                        style="background-color: var(--main-bg-color); ">
+                    Sign in
+                </button>
+
+                <!-- Register -->
+                <!--<p>Not a member?-->
+                    <!--<a href="/accounts/register" style="border-bottom: var(&#45;&#45;main-bg-color) 2px solid">Register</a>-->
+                <!--</p>-->
+            </form>
+            <!-- Form -->
+
+        </div>
+
+    </div>
+    <!-- Material form login -->
 {% endblock %}
