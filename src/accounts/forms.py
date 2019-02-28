@@ -17,7 +17,7 @@ class AbstractRegisterForm(UserCreationForm):
         label='Password confirmation',
         strip=False,
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
-        help_text='Enter the same password as before, for verification.',
+        # help_text='Enter the same password as before, for verification.',
     )
     # email_valid = RegexValidator(r'^.+@.+\..+$', message='Invalid email ID')
     # email = forms.CharField(validators=[email_valid])
@@ -33,6 +33,11 @@ class AbstractRegisterForm(UserCreationForm):
 
 class FreelancerRegisterForm(AbstractRegisterForm):
     # profile_image = forms.ImageField()
+
+    def __init__(self, *args, **kwargs):
+        super(FreelancerRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
+
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'password1', 'password2', 'email']
@@ -40,6 +45,10 @@ class FreelancerRegisterForm(AbstractRegisterForm):
 
 class EmployerRegisterForm(AbstractRegisterForm):
     # profile_image = forms.ImageField()
+
+    def __init__(self, *args, **kwargs):
+        super(EmployerRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
 
     class Meta:
         model = User
