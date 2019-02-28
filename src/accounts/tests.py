@@ -12,3 +12,8 @@ class LoginViewTest(TestCase):
         self.assertTemplateUsed(response, 'accounts/login.html')
 
 
+class LogoutViewTest(TestCase):
+
+    def test_logout_redirect(self):
+        response = self.client.get('/accounts/logout/')
+        self.assertRedirects(response, '/')
