@@ -25,7 +25,7 @@ class AbstractRegisterForm(UserCreationForm):
     mobile = forms.CharField(max_length=15, validators=[mobile_num_valid])
     description = forms.CharField(widget=forms.Textarea)
     address = forms.CharField(widget=forms.Textarea)
-    country = CountryField().formfield(blank_label='(Select Country')
+    country = CountryField().formfield(blank_label='Select Country')
 
     class Meta:
         abstract = True
