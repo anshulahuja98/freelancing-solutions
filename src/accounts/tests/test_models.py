@@ -72,6 +72,9 @@ class TestFreelancerModel(TestCase):
         self.assertEquals(self.freelancer1.skills.all()[0].name, 'skill1')
         self.assertEquals(self.freelancer1.skills.all()[1].name, 'skill2')
 
+    def test_freelancer_str_func(self):
+        self.assertEquals(self.freelancer1.__str__(), self.user1.get_full_name())
+
 
 class TestEmployerModel(TestCase):
 
@@ -101,3 +104,6 @@ class TestEmployerModel(TestCase):
         self.assertEquals(self.employer1.user.first_name, self.user2.first_name)
         self.assertEquals(self.employer1.user.last_name, self.user2.last_name)
         self.assertEquals(self.employer1.user.username, self.user2.username)
+
+    def test_employer_str_func(self):
+        self.assertEquals(self.employer1.__str__(), self.user2.get_full_name())
