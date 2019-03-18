@@ -75,6 +75,10 @@ class TestFreelancerModel(TestCase):
     def test_freelancer_str_func(self):
         self.assertEquals(self.freelancer1.__str__(), self.user1.get_full_name())
 
+    def test_mobile_max_length(self):
+        max_length = self.freelancer1._meta.get_field('mobile').max_length
+        self.assertEquals(max_length, 15)
+
 
 class TestEmployerModel(TestCase):
 
@@ -107,3 +111,7 @@ class TestEmployerModel(TestCase):
 
     def test_employer_str_func(self):
         self.assertEquals(self.employer1.__str__(), self.user2.get_full_name())
+
+    def test_mobile_max_length(self):
+        max_length = self.employer1._meta.get_field('mobile').max_length
+        self.assertEquals(max_length, 15)
