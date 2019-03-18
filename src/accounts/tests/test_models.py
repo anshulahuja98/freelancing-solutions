@@ -5,20 +5,38 @@ from django.contrib.auth.models import User
 import tempfile
 
 
-class TestModels(TestCase):
+class TestSkillModel(TestCase):
+    def setUp(self):
+        self.skill1 = Skill.objects.create(
+            name='skill1',
+            abbr='skill1'
+        )
 
+    def test_skill_create(self):
+        self.assertEquals(self.skill1.name, 'skill1')
+
+
+class TestUserModel(TestCase):
     def setUp(self):
         self.user1 = User.objects.create(
             first_name='test1',
             last_name='test1',
             username='test1'
         )
-        self.user2 = User.objects.create(
-            first_name='test2',
-            last_name='test2',
-            username='test2'
-        )
 
+    def test_user_create(self):
+        self.assertEquals(self.user1.username, 'test1')
+        self.assertEquals(self.user1.first_name, 'test1')
+        self.assertEquals(self.user1.last_name, 'test1')
+
+
+class TestFreelancerModel(TestCase):
+    def setUp(self):
+        self.user1 = User.objects.create(
+            first_name='test1',
+            last_name='test1',
+            username='test1'
+        )
         self.skill1 = Skill.objects.create(
             name='skill1',
             abbr='skill1'
@@ -39,23 +57,6 @@ class TestModels(TestCase):
         self.freelancer1.skills.add(self.skill1)
         self.freelancer1.skills.add(self.skill2)
 
-        self.employer1 = Employer.objects.create(
-            profile_image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
-            mobile=1234567890,
-            description='user_desc2',
-            country='country2',
-            address='address2',
-            user=self.user2,
-        )
-
-    def test_user_create(self):
-        self.assertEquals(self.user1.first_name, 'test1')
-        self.assertEquals(self.user1.last_name, 'test1')
-        self.assertEquals(self.user1.username, 'test1')
-
-    def test_skill_create(self):
-        self.assertEquals(self.freelancer1.skills.first().name, 'skill1')
-
     def test_freelancer_create(self):
         self.assertEquals(self.freelancer1.description, 'user_desc1')
         self.assertEquals(self.freelancer1.country, 'country1')
@@ -70,6 +71,25 @@ class TestModels(TestCase):
     def test_freelancer_skills_add(self):
         self.assertEquals(self.freelancer1.skills.all()[0].name, 'skill1')
         self.assertEquals(self.freelancer1.skills.all()[1].name, 'skill2')
+
+
+class TestEmployerModel(TestCase):
+
+    def setUp(self):
+        self.user2 = User.objects.create(
+            first_name='test2',
+            last_name='test2',
+            username='test2'
+        )
+
+        self.employer1 = Employer.objects.create(
+            profile_image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
+            mobile=1234567890,
+            description='user_desc2',
+            country='country2',
+            address='address2',
+            user=self.user2,
+        )
 
     def test_employer_create(self):
         self.assertEquals(self.employer1.description, 'user_desc2')
