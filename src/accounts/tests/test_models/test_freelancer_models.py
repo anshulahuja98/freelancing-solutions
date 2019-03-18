@@ -8,17 +8,17 @@ import tempfile
 class TestFreelancerModel(TestCase):
     def setUp(self):
         self.user1 = User.objects.create(
-            first_name='test1',
-            last_name='test1',
-            username='test1'
+            first_name='test_fn_1',
+            last_name='test_ln_1',
+            username='test_un_1'
         )
         self.skill1 = Skill.objects.create(
             name='skill1',
-            abbr='skill1'
+            abbr='skl1'
         )
         self.skill2 = Skill.objects.create(
             name='skill2',
-            abbr='skill2'
+            abbr='skl2'
         )
 
         self.freelancer1 = Freelancer.objects.create(
@@ -44,7 +44,7 @@ class TestFreelancerModel(TestCase):
         self.assertEquals(self.freelancer1.user.username, self.user1.username)
 
     def test_freelancer_skills_add(self):
-        self.assertEquals(self.freelancer1.skills.all()[0].name, 'skill1')
+        self.assertEquals(self.freelancer1.skills.all()[0].name, 'sk1')
         self.assertEquals(self.freelancer1.skills.all()[1].name, 'skill2')
 
     def test_freelancer_str_func(self):

@@ -8,9 +8,9 @@ class TestEmployerModel(TestCase):
 
     def setUp(self):
         self.user2 = User.objects.create(
-            first_name='test2',
-            last_name='test2',
-            username='test2'
+            first_name='test_fn_2',
+            last_name='test_ln_2',
+            username='test_un_2'
         )
 
         self.employer1 = Employer.objects.create(
