@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: bash -c "source '$(pipenv --venv)'/bin/activate"
+    command: bash -c "python manage.py makemigrations"
+    command: bash -c "python manage.py migrate"
+    command: bash -c "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/dist
+    container_name: freelancing-solutions
+    ports:
+      - "8000:8000"
