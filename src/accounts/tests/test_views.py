@@ -1,7 +1,5 @@
 from django.test import TestCase, Client
-from django.urls import resolve, reverse
-from accounts.models import Freelancer, Employer, AbstractUserProfile
-import json
+from django.urls import reverse
 
 
 class TestViews(TestCase):

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from accounts.models import Freelancer, Employer, AbstractUserProfile, CountryField
+from accounts.models import Freelancer, Employer
 from jobs.models import Skill
 from django.contrib.auth.models import User
 import tempfile
