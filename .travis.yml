@@ -17,3 +17,5 @@ script:
   - python3 manage.py migrate
   - coverage run --source='.' manage.py test
   - coverage report -m
+after_success:
+  - coveralls
