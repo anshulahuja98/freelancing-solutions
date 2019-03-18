@@ -44,7 +44,7 @@ class TestFreelancerModel(TestCase):
         self.assertEquals(self.freelancer1.user.username, self.user1.username)
 
     def test_freelancer_skills_add(self):
-        self.assertEquals(self.freelancer1.skills.all()[0].name, 'sk1')
+        self.assertEquals(self.freelancer1.skills.all()[0].name, 'skill1')
         self.assertEquals(self.freelancer1.skills.all()[1].name, 'skill2')
 
     def test_freelancer_str_func(self):
