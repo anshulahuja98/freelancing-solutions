@@ -1,6 +1,7 @@
 from django.test import TestCase
 from accounts.models import Employer
 from django.contrib.auth.models import User
+from django_countries import countries
 import tempfile
 
 
@@ -17,14 +18,14 @@ class TestEmployerModel(TestCase):
             profile_image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
             mobile=1234567890,
             description='user_desc2',
-            country='country2',
+            country=countries[1][0],
             address='address2',
             user=self.user2,
         )
 
     def test_employer_create(self):
         self.assertEquals(self.employer1.description, 'user_desc2')
-        self.assertEquals(self.employer1.country, 'country2')
+        self.assertEquals(self.employer1.country, countries[1][0])
         self.assertEquals(self.employer1.address, 'address2')
         self.assertEquals(self.employer1.mobile, 1234567890)
 

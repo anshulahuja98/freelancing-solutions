@@ -2,6 +2,7 @@ from django.test import TestCase
 from accounts.models import Freelancer
 from jobs.models import Skill
 from django.contrib.auth.models import User
+from django_countries import countries
 import tempfile
 
 
@@ -25,7 +26,7 @@ class TestFreelancerModel(TestCase):
             profile_image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
             mobile=1234567890,
             description='user_desc1',
-            country='country1',
+            country=countries[0][0],
             address='address1',
             user=self.user1,
         )
@@ -34,7 +35,7 @@ class TestFreelancerModel(TestCase):
 
     def test_freelancer_create(self):
         self.assertEquals(self.freelancer1.description, 'user_desc1')
-        self.assertEquals(self.freelancer1.country, 'country1')
+        self.assertEquals(self.freelancer1.country, countries[0][0])
         self.assertEquals(self.freelancer1.address, 'address1')
         self.assertEquals(self.freelancer1.mobile, 1234567890)
 

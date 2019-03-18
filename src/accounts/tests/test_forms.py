@@ -1,7 +1,8 @@
 from django.test import TestCase
 
-from accounts.forms import FreelancerRegisterForm, EmployerRegisterForm, CountryField
+from accounts.forms import FreelancerRegisterForm, EmployerRegisterForm
 from django.contrib.auth import password_validation
+from django_countries import countries
 
 
 class TestRegistrationForm(TestCase):
@@ -10,7 +11,7 @@ class TestRegistrationForm(TestCase):
         self.form = FreelancerRegisterForm(data={
             'mobile': 1234567890,
             'description': 'user_desc1',
-            'country': CountryField().countries[0][0],
+            'country': countries[0][0],
             'address': 'address1',
             'first_name': 'first_name',
             'last_name': 'last_name',
@@ -57,7 +58,7 @@ class TestRegistrationForm(TestCase):
     def test_form_unfilled_data(self):
         form = FreelancerRegisterForm(data={
             'mobile': 1234567890,
-            'country': CountryField().countries[0][0],
+            'country': countries[0][0],
             'address': 'address1',
             'first_name': 'first_name',
             'last_name': 'last_name',
@@ -71,7 +72,7 @@ class TestRegistrationForm(TestCase):
         form = EmployerRegisterForm(data={
             'mobile': 1234567890,
             'description': 'user_desc1',
-            'country': CountryField().countries[0][0],
+            'country': countries[0][0],
             'address': 'address1',
             'first_name': 'first_name',
             'last_name': 'last_name',
