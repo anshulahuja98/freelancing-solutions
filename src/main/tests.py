@@ -10,14 +10,14 @@ class IndexViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_view_url_by_name(self):
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('main:index'))
         self.assertEqual(response.status_code, 200)
 
     def test_view_uses_correct_template(self):
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('main:index'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'main/index.html')
 
     def test_view_used(self):
-        response = self.client.get(reverse('index'))
+        response = self.client.get(reverse('main:index'))
         self.assertEqual(response.resolver_match.func.__name__, IndexView.as_view().__name__)
