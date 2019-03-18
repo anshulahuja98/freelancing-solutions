@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'freelancer.apps.FreelancerConfig',
     'employer.apps.EmployerConfig',
     'jobs.apps.JobsConfig',
+    'main.apps.MainConfig',
     'django_countries'
 ]
 
