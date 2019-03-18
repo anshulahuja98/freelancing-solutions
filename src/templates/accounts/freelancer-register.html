@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block main %}
+<!-- Material form register -->
+<div class="card mx-auto col-10 col-md-8 col-lg-6 my-5">
+    <h5 class="white-skin text-center py-4 heading3" style="color: var(--main-bg-color)">
+        <strong>Freelancer Sign Up</strong>
+    </h5>
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+        <!-- Form -->
+        <form class="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-rounded btn-block my-3 waves-effect z-depth-0 col-8 mx-auto" type="submit"
+                    style="background-color: var(--main-bg-color); ">
+                Sign Up
+            </button>
+        </form>
+        {{ form.errors }}
+        <!-- Form -->
+    </div>
+</div>
+<!-- Material form register -->
+{% endblock %}
+

@@ -1,2 +1,2 @@
-# freelancing-solutions  ![Build status](https://travis-ci.com/anshulahuja98/freelancing-solutions.svg?token=sxKTXczsK8R6uvz4sAHy&branch=master)
+# freelancing-solutions  ![Build status](https://travis-ci.com/anshulahuja98/freelancing-solutions.svg?token=sxKTXczsK8R6uvz4sAHy&branch=master) [![Coverage Status](https://coveralls.io/repos/github/anshulahuja98/freelancing-solutions/badge.svg?branch=master)](https://coveralls.io/github/anshulahuja98/freelancing-solutions?branch=master)
 A freelancing platform project for course *CS223(Software Engineering)*
