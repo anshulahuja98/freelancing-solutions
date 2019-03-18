@@ -37,6 +37,6 @@ class TestEmployerModel(TestCase):
     def test_employer_str_func(self):
         self.assertEquals(self.employer1.__str__(), self.user2.get_full_name())
 
-    def test_mobile_max_length(self):
-        max_length = self.employer1._meta.get_field('mobile').max_length
-        self.assertEquals(max_length, 15)
+    def test_mobile_less_equal_max_length(self):
+        max_length = Employer._meta.get_field('mobile').max_length
+        self.assertLessEqual(len(str(self.employer1.mobile)), max_length)

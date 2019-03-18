@@ -51,6 +51,6 @@ class TestFreelancerModel(TestCase):
     def test_freelancer_str_func(self):
         self.assertEquals(self.freelancer1.__str__(), self.user1.get_full_name())
 
-    def test_mobile_max_length(self):
-        max_length = self.freelancer1._meta.get_field('mobile').max_length
-        self.assertEquals(max_length, 15)
+    def test_mobile_less_equal_max_length(self):
+        max_length = Freelancer._meta.get_field('mobile').max_length
+        self.assertLessEqual(len(str(self.freelancer1.mobile)), max_length)
