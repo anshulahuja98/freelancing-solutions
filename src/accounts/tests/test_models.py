@@ -17,12 +17,40 @@ class TestModels(TestCase):
             name='skill1',
             abbr='skill1'
         )
+        self.skill2 = Skill.objects.create(
+            name='skill2',
+            abbr='skill2'
+        )
         self.freelancer1 = Freelancer.objects.create(
             profile_image=tempfile.NamedTemporaryFile(suffix=".jpg").name,
-            mobile=9432423223,
+            mobile=1234567890,
             description='user_desc1',
             country='country1',
             address='address1',
             user=self.user1,
         )
         self.freelancer1.skills.add(self.skill1)
+        self.freelancer1.skills.add(self.skill2)
+
+    def test_user_create(self):
+        self.assertEquals(self.user1.first_name, 'test1')
+        self.assertEquals(self.user1.last_name, 'test1')
+        self.assertEquals(self.user1.username, 'test1')
+
+    def test_skill_create(self):
+        self.assertEquals(self.freelancer1.skills.first().name, 'skill1')
+
+    def test_freelancer_create(self):
+        self.assertEquals(self.freelancer1.description, 'user_desc1')
+        self.assertEquals(self.freelancer1.country, 'country1')
+        self.assertEquals(self.freelancer1.address, 'address1')
+        self.assertEquals(self.freelancer1.mobile, 1234567890)
+
+    def test_freelancer_user_add(self):
+        self.assertEquals(self.freelancer1.user.first_name, self.user1.first_name)
+        self.assertEquals(self.freelancer1.user.last_name, self.user1.last_name)
+        self.assertEquals(self.freelancer1.user.username, self.user1.username)
+
+    def test_freelancer_skills_add(self):
+        self.assertEquals(self.freelancer1.skills.all()[0].name, 'skill1')
+        self.assertEquals(self.freelancer1.skills.all()[1].name, 'skill2')
