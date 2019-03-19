@@ -58,3 +58,9 @@ class TestLoginView(TestCase):
         response = self.client.get('/admin/')
 
         self.assertRedirects(response, '/admin/login/?next=/admin/', 302, 200)
+
+    def test_admin_created_user_login_redirect(self):
+        self.client.login(username='testuser', password='3HJ1aV0sZ&3iD')
+        response = self.client.get(reverse('accounts:login'))
+
+        self.assertRedirects(response, reverse('main:index'), 302, 200)
