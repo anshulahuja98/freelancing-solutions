@@ -37,7 +37,7 @@ class Job(models.Model):
 
     # Returns price range as a string for the Job
     def get_price_range(self):
-        return self.minimum_price + '-' + self.maximum_price
+        return str(self.minimum_price) + '-' + str(self.maximum_price)
 
 
 # Module for handling Bids by Freelancers on various Jobs
