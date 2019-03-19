@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 
-class TestViews(TestCase):
+class TestGetViews(TestCase):
 
     def setUp(self):
         self.client = Client()
