@@ -56,15 +56,11 @@
             overflow-x: hidden;
         }
 
-        :root {
-            --color1: #4F85C6;
-        }
-
         #job_list_container {
-            min-height: 100%;
+            min-height: calc(100vh - 80px - 56px);
             padding: 0 5vw;
             overflow-y: auto;
-            background: var(--color1);
+            background: var(--main-bg-color);
         }
 
         #job_list_title {
@@ -98,7 +94,7 @@
 
         .job_skill_list > button {
             width: min-content;
-            background: var(--color1);
+            background: var(--main-bg-color);
             padding: 0.25em 0.5em;
             border-radius: 10em;
             color: white;
@@ -108,4 +104,3 @@
     </style>
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans" rel="stylesheet">
 {% endblock %}
-{% block footer %}{% endblock %}
