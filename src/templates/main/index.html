@@ -1,10 +1,14 @@
 {% extends 'main/base.html' %}
 {% load staticfiles %}
 {% block main %}
-    <div class="container-fluid text-center " style="padding-top: 15vh;">
+    <div class="container text-center">
         <div class="mb-2"></div>
         <div class="heading1">Freelancing Solutions</div>
-        <div class="heading2 pt-3">Hire expert freelancers for any <br>job, online</div>
+        <div class="heading2 pt-3">
+            Hire expert freelancers for any job, or
+            <br>
+            Find best job for you, Here!
+        </div>
         <div class="btn-group my-5" role="group" aria-label="Buttons">
             {% if user.is_authenticated %}
                 <a href="{% url 'employer:dashboard' %}">
