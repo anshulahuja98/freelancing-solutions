@@ -14,28 +14,26 @@
         <meta property="og:site_name" content="Freelancing Solutions"/>
     {% endblock %}
 
-    <title>{% block title %}Freelancing Solutions{% endblock %}</title>
+    <title>
+        {% block title %}
+            Freelancing Solutions
+        {% endblock %}
+    </title>
 </head>
-<body class="text-white" style="background-color: var(--main-bg-color)">
+<body class="text-white">
 <header>
     {% include 'main/mixins/navigation_bar_mixin.html' %}
 </header>
-
-<main class="py-2" style="height:max-content; min-height: 79vh">
+<main>
     {% block main %}
     {% endblock %}
 </main>
 
 {% block footer %}
-    <footer class="footer text-center" style="height: 10vh; margin-right: 0vw;">
-        <div class="container" style="height: 10vh; margin-right: 0vw;">
-            <div class="row float-right">
-                {% include "main/mixins/social_links_mixin.html" %}
-            </div>
-        </div>
+    <footer class="footer text-center">
+        {% include "main/mixins/social_links_mixin.html" %}
     </footer>
 {% endblock %}
-
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
@@ -57,6 +55,37 @@
     ::-webkit-scrollbar-thumb {
         background: var(--main-bg-color);
         border-left: 3px var(--btn-bg-color) solid;
+    }
+
+    header {
+        background: var(--btn-bg-color);
+    }
+
+    .freelancing-solutions-navbar-logo {
+        height: 48px;
+    }
+
+    main {
+        min-height: calc(100vh - 80px - 56px);
+        background-color: var(--main-bg-color);
+        overflow-y: auto;
+    }
+
+    main > .container {
+        padding-top: 15vh;
+        height: calc(100vh - 80px - 56px);
+    }
+
+    footer {
+        height: 56px;
+        background-color: var(--btn-bg-color);
+        padding-bottom: 4px;
+        padding-top: 4px;
+    }
+
+    footer > .container {
+        height: 48px;
+        margin-right: 0;
     }
 
     .button-fs .fa.fa-sm {
