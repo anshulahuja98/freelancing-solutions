@@ -1,0 +1,61 @@
+{% load staticfiles %}
+<nav class="navbar navbar-expand-lg navbar-expand-md navbar-dark">
+    <a class="navbar-brand" href="/">
+        <img class="freelancing-solutions-navbar-logo" src="{% static 'assets/freelancing_logo.png' %}">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'jobs:job-list' %}">
+                    <button type="button" class="btn btn-rounded"
+                            style="background-color: var(--btn-bg-color); font-weight: bold; margin: 0;"><i
+                            aria-hidden="true"></i>
+                        Browse Jobs
+                    </button>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">
+                    <button type="button" class="btn btn-rounded"
+                            style="background-color: var(--btn-bg-color); font-weight: bold; margin: 0;"><i
+                            aria-hidden="true"></i>
+                        Post Jobs
+                    </button>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:logout' %}">
+                        <button type="button" class="btn btn-rounded"
+                                style="background-color: var(--btn-bg-color); font-weight: bold; margin: 0;"><i
+                                aria-hidden="true"></i>
+                            Logout
+                        </button>
+                    </a>
+                </li>
+                <li class="nav-item avatar">
+                    <a class="nav-link py-auto" href="">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
+                             class="rounded-circle z-depth-0" alt="avatar image" height="48">
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'accounts:login' %}">
+                        <button type="button" class="btn btn-rounded"
+                                style="background-color: var(--btn-bg-color); font-weight: bold; margin: 0;"><i
+                                aria-hidden="true"></i>
+                            Login
+                        </button>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>

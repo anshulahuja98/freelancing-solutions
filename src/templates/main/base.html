@@ -18,46 +18,7 @@
 </head>
 <body class="text-white" style="background-color: var(--main-bg-color)">
 <header>
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark lighten-1" style="color: var(--main-bg-color)">
-        <a class="navbar-brand" href="/">
-            <img src="{% static 'assets/freelancing_logo.png' %}" style="height: 5vh;">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/jobs/">Browse Jobs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Post Job</a>
-                </li>
-            </ul>
-
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-                    </li>
-                    <li class="nav-item avatar">
-                        <a class="nav-link p-0" href="#">
-                            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg"
-                                 class="rounded-circle z-depth-0" alt="avatar image" height="35">
-                        </a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
-                    </li>
-                {% endif %}
-
-
-            </ul>
-        </div>
-    </nav>
+    {% include 'main/mixins/navigation_bar_mixin.html' %}
 </header>
 
 <main class="py-2" style="height:max-content; min-height: 79vh">
