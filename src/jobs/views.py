@@ -34,6 +34,14 @@ class JobDetailView(LoginRequiredMixin, DetailView):
     def get_object(self, queryset=None):
         return get_object_or_404(Job, id=self.kwargs.get('id'))
 
+    def get_context_data(self, **kwargs):
+        context = super(JobDetailView, self).get_context_data(**kwargs)
+        if hasattr(self.request.user, 'employer'):
+            context['base_template'] = 'employer/base.html'
+        elif hasattr(self.request.user, 'freelancer'):
+            context['base_template'] = 'freelancer/base.html'
+        return context
+
 
 class AbstractJobListView(LoginRequiredMixin, ListView):
     model = Job
