@@ -1,9 +1,19 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Job
 from accounts.models import Freelancer, Employer
 from freelancer.views import FreelancerRequiredMixin
 from employer.views import EmployerRequiredMixin
+from django.shortcuts import get_object_or_404
+
+
+class JobDetailView(LoginRequiredMixin, DetailView):
+    model = Job
+    template_name = 'jobs/job.html'
+    context_object_name = 'job'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Job, id=self.kwargs.get('id'))
 
 
 class AbstractJobListView(LoginRequiredMixin, ListView):
