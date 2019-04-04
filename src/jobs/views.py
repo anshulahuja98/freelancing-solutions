@@ -25,19 +25,13 @@ class FreelancerJobListView(AbstractJobListView, FreelancerRequiredMixin):
     template_name = 'freelancer/job_list.html'
 
     def get_queryset(self):
-        if hasattr(self.request.user, 'freelancer'):
-            freelancer_user_profile = Freelancer.objects.get(user=self.request.user)
-            return Job.objects.filter(skills_required__in=freelancer_user_profile.skills.all()).distinct()
-        else:
-            return None
+        freelancer_user_profile = Freelancer.objects.get(user=self.request.user)
+        return Job.objects.filter(skills_required__in=freelancer_user_profile.skills.all()).distinct()
 
 
 class EmployerAddedJobListView(AbstractJobListView, EmployerRequiredMixin):
     template_name = 'employer/job_list.html'
 
     def get_queryset(self):
-        if hasattr(self.request.user, 'employer'):
-            employer_user_profile = Employer.objects.get(user=self.request.user)
-            return Job.objects.filter(employer=employer_user_profile)
-        else:
-            return None
+        employer_user_profile = Employer.objects.get(user=self.request.user)
+        return Job.objects.filter(employer=employer_user_profile)
