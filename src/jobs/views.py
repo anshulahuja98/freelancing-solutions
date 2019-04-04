@@ -1,10 +1,29 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Job
 from accounts.models import Freelancer, Employer
 from freelancer.views import FreelancerRequiredMixin
 from employer.views import EmployerRequiredMixin
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, HttpResponseRedirect
+from .forms import JobForm
+
+
+class JobFormView(EmployerRequiredMixin, CreateView):
+    form_class = JobForm
+    template_name = 'jobs/form.html'
+    success_url = '/jobs/employer'
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(self.success_url)
+
+    def post(self, request, *args, **kwargs):
+        self.request.POST._mutable = True
+        self.request.POST({
+            'employer': Employer.objects.get(user=self.request.user).id,
+        })
+        self.request.POST._mutable = False
+        return super().post(request, args, kwargs)
 
 
 class JobDetailView(LoginRequiredMixin, DetailView):
