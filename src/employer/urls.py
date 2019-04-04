@@ -1,8 +1,9 @@
 from django.urls import path
-from django.views.generic import TemplateView
+from employer.views import DashboardView
+
 
 app_name = 'employer'
 
 urlpatterns = [
-    path('dashboard/', TemplateView.as_view(template_name='employer/dashboard.html'), name='dashboard'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 ]

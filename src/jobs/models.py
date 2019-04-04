@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Freelancer, Employer  # Import Freelancer and Employer modules from accounts
 from .fields import MoneyField, RatingField  # Import custom Money and Rating fields from fields.py
+from django.db.models import Avg
 
 
 # Module for handling skills of various freelancers
@@ -33,11 +34,11 @@ class Job(models.Model):
     # Returns the average of all bids on particular Job
     @property
     def get_average_bid(self):
-        return Bid.objects.all().filter(job=self).amount.average()
+        return Bid.objects.all().filter(job=self).aggregate(Avg('amount'))['amount__avg']
 
     # Returns price range as a string for the Job
     def get_price_range(self):
-        return self.minimum_price + '-' + self.maximum_price
+        return str(self.minimum_price) + '-' + str(self.maximum_price)
 
 
 # Module for handling Bids by Freelancers on various Jobs

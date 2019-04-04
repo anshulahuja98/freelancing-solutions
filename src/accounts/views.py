@@ -18,7 +18,7 @@ class LoginView(DefaultLoginView):
         elif self.request.user.is_staff:
             return url or '/admin'
         else:
-            return url
+            return url or reverse('main:index')
 
 
 class FreelancerRegisterFormView(CreateView):

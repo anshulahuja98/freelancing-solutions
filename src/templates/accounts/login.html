@@ -1,18 +1,11 @@
 {% extends 'main/base.html' %}
 {% block main %}
- <!-- Material form login -->
-    <div class="card mx-auto col-10 col-md-8 col-lg-6 mt-5">
-
-        <h5 class="white-skin text-center py-4 heading3" style="color: var(--main-bg-color)">
+    <div class="card mx-auto col-10 col-md-8 col-lg-6" style="margin: 5vh 0; min-height: calc(90vh - 80px - 56px)">
+        <h5 class="white-skin text-center py-4 heading3" style="color: var(--main-bg-color);">
             <strong>Sign in</strong>
         </h5>
-
-        <!--Card content-->
         <div class="card-body px-5 pt-0">
-
-            <!-- Form -->
             <form class="text-center" method="post">
-
                 {% csrf_token %}
                 {{ form.as_p }}
                 <!--&lt;!&ndash; Email &ndash;&gt;-->
@@ -40,22 +33,15 @@
                         <!--<a href="">Forgot password?</a>-->
                     <!--</div>-->
                 <!--</div>-->
-
-                <!-- Sign in button -->
                 <button class="btn btn-rounded btn-block my-3 waves-effect z-depth-0 col-8 mx-auto" type="submit"
                         style="background-color: var(--main-bg-color); ">
                     Sign in
                 </button>
-
                 <!-- Register -->
                 <!--<p>Not a member?-->
                     <!--<a href="/accounts/register" style="border-bottom: var(&#45;&#45;main-bg-color) 2px solid">Register</a>-->
                 <!--</p>-->
             </form>
-            <!-- Form -->
-
         </div>
-
     </div>
-    <!-- Material form login -->
 {% endblock %}
