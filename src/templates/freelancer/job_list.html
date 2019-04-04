@@ -1,0 +1,106 @@
+{% extends 'main/base.html' %}
+{% load staticfiles %}
+{% block title %}Jobs | Freelancing Solutions{% endblock %}
+{% block main %}
+    <div id="job_list_container" class="col-12">
+        <div id="job_list_title" class="col-12 display-3 py-5">JOBS</div>
+        <div class="col-12 mb-5">
+            {% for job in job_list %}
+                <a href="#">
+                    <div class="job col-lg-10 col-md-11 col-12 mb-1 mx-auto">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-12 py-1 pl-3">
+                            <div class="job_title">
+                                {{ job.title }}
+                            </div>
+                            <div class="job_source">
+                                {{ job.employer }}
+                            </div>
+                            <div class="job_description my-3">
+                                {{ job.description|truncatechars:100 }}
+                            </div>
+                            <div class="job_skill_list">
+                                {% for skill in job.skills_required.all|slice:":5" %}
+                                    <button class="mr-1 mb-1">
+                                        &#x2295;&nbsp;{{ skill }}
+                                    </button>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-12 py-1">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-6 my-2">
+                                    Average Bid
+                                    <br>
+                                    &#x20b9;&nbsp;
+                                    {% if job.get_average_bid == NULL %}
+                                        0.00{% else %}{{ job.get_average_bid }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-6 my-2">
+                                    Maximum Pay
+                                    <br>
+                                    &#x20b9;&nbsp;{{ job.maximum_price }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        #job_list_container {
+            min-height: calc(100vh - 80px - 56px);
+            padding: 0 5vw;
+            overflow-y: auto;
+            background: var(--main-bg-color);
+        }
+
+        #job_list_title {
+            text-align: center;
+            font-family: 'Fjalla One', sans-serif;
+            color: white;
+        }
+
+        .job {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            font-family: 'Noto Sans', sans-serif;
+            background: var(--btn-bg-color);
+            color: white;
+        }
+
+        .job_title {
+            font-size: x-large;
+        }
+
+        .job_source {
+            font-size: medium;
+        }
+
+        .job_description {
+            text-align: justify;
+            font-size: small;
+        }
+
+        .job_skill_list > button {
+            width: min-content;
+            background: var(--main-bg-color);
+            padding: 0.25em 0.5em;
+            border-radius: 10em;
+            color: white;
+            border: none;
+            font-size: small;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans" rel="stylesheet">
+{% endblock %}
