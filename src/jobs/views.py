@@ -21,7 +21,7 @@ class AbstractJobListView(LoginRequiredMixin, ListView):
     context_object_name = 'job_list'
 
 
-class FreelancerJobListView(AbstractJobListView):
+class FreelancerJobListView(AbstractJobListView, FreelancerRequiredMixin):
     template_name = 'freelancer/job_list.html'
 
     def get_queryset(self):
@@ -32,7 +32,7 @@ class FreelancerJobListView(AbstractJobListView):
             return None
 
 
-class EmployerAddedJobListView(AbstractJobListView):
+class EmployerAddedJobListView(AbstractJobListView, EmployerRequiredMixin):
     template_name = 'employer/job_list.html'
 
     def get_queryset(self):
