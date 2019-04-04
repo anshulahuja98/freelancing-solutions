@@ -2,6 +2,7 @@ from django.db import models
 from accounts.models import Freelancer, Employer  # Import Freelancer and Employer modules from accounts
 from .fields import MoneyField, RatingField  # Import custom Money and Rating fields from fields.py
 from django.db.models import Avg
+from uuid import uuid4
 
 
 # Module for handling skills of various freelancers
@@ -16,6 +17,8 @@ class Skill(models.Model):
 
 # Module for handling Jobs postings by the employers on the portal
 class Job(models.Model):
+    # Unique ID for each Job
+    id = models.UUIDField(primary_key=True, default=uuid4)
     # Foreign key to an Employer object who has posted the job offering
     employer = models.ForeignKey(Employer, null=True, on_delete=models.SET_NULL)
     # Descriptive Fields for the Job
