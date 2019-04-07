@@ -1,4 +1,115 @@
-<html>flak8 .
+{% extends base_template %}
+{% load staticfiles %}
+{% block title %}
+    {{ job.title }} | Freelancing Solutions
+{% endblock %}
+{% block main %}
+    <div id="job_container" class="col-12 p-5">
+        <div id="job_detail" class="col-lg-8 col-12 py-3 mx-auto">
+            <div id="job_title_container" class="col-12 mx-auto">
+                <h1 class="display-4">
+                    {{ job.title }}
+                </h1>
+            </div>
+            <div id="job_employer_container" class="col-12 mx-auto">
+                <h6 class="display-6">
+                    @ {{ job.employer }}
+                </h6>
+            </div>
+            <div id="job_description_container" class="col-10 mx-auto mt-5 pt-3">
+                <p style="word-break: break-word;">
+                    {{ job.description }}
+                </p>
+            </div>
+            <div id="job_skill_container" class="col-10  mx-auto mt-2 pb-3">
+                {% for skill in job.skills_required.all %}
+                    <button class="mr-1 mb-1">
+                        &#x2295;&nbsp;{{ skill }}
+                    </button>
+                {% endfor %}
+            </div>
+            <div class="col-10 mx-auto">
+                <div class="row">
+                    <div id="job_average_bid_container" class="col-lg-6 col-md-6 col-12 col-sm-6 mx-auto mt-4 mb-3">
+                        <div id="job_average_bid_container_title" class="col-12">
+                            <h5 style="font-weight: bold">
+                                Average Bid
+                            </h5>
+                        </div>
+                        <div id="job_average_bid" class="col-12">
+                            {% if job.get_average_bid == NULL %}
+                                &#x20B9; 0.00
+                            {% else %}
+                                &#x20B9; {{ job.get_average_bid }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div id="job_maximum_salary_container" class="col-lg-6 col-md-6 col-sm-6 col-12 mx-auto mt-4 mb-3">
+                        <div id="job_maximum_salary_title" class="col-12">
+                            <h5 style="font-weight: bold">
+                                Maximum Pay
+                            </h5>
+                        </div>
+                        <div id="job_maximum_salary" class="col-12">
+                            &#x20B9; {{ job.maximum_price }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
 
-{{ job }}
-</html>
+        #job_container {
+            min-height: calc(100vh - 80px - 56px);
+            overflow-y: auto;
+            background: var(--main-bg-color);
+        }
+
+        #job_detail {
+            height: min-content;
+            background: var(--btn-bg-color);
+            color: #ffffff;
+        }
+
+        #job_title_container,
+        #job_employer_container,
+        #job_description_container,
+        #job_skill_container,
+        #job_average_bid_container_title,
+        #job_average_bid,
+        #job_maximum_salary_container {
+            text-align: center;
+        }
+
+        #job_title_container {
+            font-family: 'Fjalla One', sans-serif;
+        }
+
+        #job_skill_container > button {
+            width: min-content;
+            background: var(--main-bg-color);
+            padding: 0.5em 1em;
+            border-radius: 10em;
+            color: white;
+            border: none;
+            font-size: medium;
+        }
+
+        #job_description_container{
+            border-top: #ffffff 0.005vh solid;
+        }
+
+        #job_skill_container{
+            border-bottom: #ffffff 0.005vh solid;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+{% endblock %}
