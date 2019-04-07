@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+{% block base_header_and_main %}
+    <header>
+        {% include 'freelancer/mixins/navigation_bar_mixin.html' %}
+    </header>
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+{% endblock %}
