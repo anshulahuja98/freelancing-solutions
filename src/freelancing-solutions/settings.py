@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'employer.apps.EmployerConfig',
     'jobs.apps.JobsConfig',
     'main.apps.MainConfig',
-    'django_countries'
+    'django_countries',
+    'crispy_forms'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
