@@ -3,6 +3,7 @@ from accounts.models import Freelancer, Employer  # Import Freelancer and Employ
 from .fields import MoneyField, RatingField  # Import custom Money and Rating fields from fields.py
 from django.db.models import Avg
 from uuid import uuid4
+from django.shortcuts import reverse
 
 
 # Module for handling skills of various freelancers
@@ -42,6 +43,9 @@ class Job(models.Model):
     # Returns price range as a string for the Job
     def get_price_range(self):
         return str(self.minimum_price) + '-' + str(self.maximum_price)
+
+    def get_absolute_url(self):
+        return reverse("jobs:job-detail", kwargs={"id": self.id})
 
 
 # Module for handling Bids by Freelancers on various Jobs

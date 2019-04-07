@@ -6,7 +6,7 @@
         <div id="job_list_title" class="col-12 display-3 py-5">JOBS</div>
         <div class="col-12 mb-5">
             {% for job in job_list %}
-                <a href="#">
+                <a href="{{ job.get_absolute_url }}">
                     <div class="job col-lg-10 col-md-11 col-12 mb-1 mx-auto">
                         <div class="col-lg-8 col-md-8 col-sm-8 col-12 py-1 pl-3">
                             <div class="job_title">
