@@ -19,7 +19,7 @@ class JobFormView(EmployerRequiredMixin, CreateView):
 
     def post(self, request, *args, **kwargs):
         self.request.POST._mutable = True
-        self.request.POST({
+        self.request.POST.update({
             'employer': Employer.objects.get(user=self.request.user).id,
         })
         self.request.POST._mutable = False
