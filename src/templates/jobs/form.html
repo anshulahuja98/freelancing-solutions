@@ -1,7 +1,41 @@
-<html>
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Create Job</button>
-</form>
-</html>
+{% extends 'employer/base.html' %}
+{% load crispy_forms_tags %}
+{% block main %}
+    <div id="form_container" class="col-lg-8 col-10 mx-auto my-5">
+        <div id="form_title" class="col-12 py-5">
+            <h1>
+                Post Job
+            </h1>
+        </div>
+        <form method="post" class="col-lg-10 col-12 mx-auto pb-5">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="mt-4">Create Job</button>
+        </form>
+    </div>
+    <style>
+        #form_container {
+            color: #ffffff !important;
+            text-align: center;
+            background: var(--btn-bg-color);
+        }
+
+        #form_title{
+            background: var(--btn-bg-color);
+        }
+
+        .col-form-label{
+            color: #ffffff;
+        }
+
+        #form_container > form > button {
+            width: max-content;
+            background: var(--main-bg-color);
+            padding: 0.5em 1em;
+            border-radius: 10em;
+            color: white;
+            border: none;
+            font-size: medium;
+        }
+    </style>
+{% endblock %}
