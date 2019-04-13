@@ -14,7 +14,7 @@ class FreelancerRequiredMixin(LoginRequiredMixin):
             return self.handle_no_permission()
 
 
-class DashboardView(FreelancerRequiredMixin, UpdateView):
+class FreelancerDashboardView(FreelancerRequiredMixin, UpdateView):
     model = Freelancer
     fields = (
         'mobile',
