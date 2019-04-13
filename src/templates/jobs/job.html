@@ -60,6 +60,7 @@
             <div class="col-10 mx-auto mt-3 py-4 text-center" style="border-top: #ffffff 0.005vh solid;">
                 {% if form %}
                     <form class="text-center" method="post" style="color: #ffffff;">
+                        {% csrf_token %}
                         {{ form|crispy }}
                         <button type="submit" class="mt-4">Bid</button>
                     </form>
