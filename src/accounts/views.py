@@ -10,6 +10,7 @@ class LoginView(DefaultLoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
+        """Redirects login url based on user"""
         url = super().get_redirect_url()
         if hasattr(self.request.user, 'employer'):
             return url or reverse('employer:dashboard')
@@ -28,13 +29,14 @@ class FreelancerRegisterFormView(CreateView):
     success_url = '/accounts/login/'
 
     def form_valid(self, form):
+        """Add current user to form if form is valid"""
         user = form.save()
         self.create_profile(user, **form.cleaned_data)
         return super(FreelancerRegisterFormView, self).form_valid(form)
 
     @staticmethod
     def create_profile(user=None, **kwargs):
-        # Creates a new UserProfile object after successful creation of User object
+        """Creates a new UserProfile object after successful creation of User object"""
         userprofile = Freelancer.objects.create(user=user,
                                                 mobile=kwargs['mobile'],
                                                 description=kwargs['description'],
@@ -53,13 +55,14 @@ class EmployerRegisterFormView(CreateView):
     success_url = '/accounts/login/'
 
     def form_valid(self, form):
+        """Add current user to form if form is valid"""
         user = form.save()
         self.create_profile(user, **form.cleaned_data)
         return super(EmployerRegisterFormView, self).form_valid(form)
 
     @staticmethod
     def create_profile(user=None, **kwargs):
-        # Creates a new UserProfile object after successful creation of User object
+        """Creates a new UserProfile object after successful creation of User object"""
         userprofile = Employer.objects.create(user=user,
                                               mobile=kwargs['mobile'],
                                               description=kwargs['description'],
