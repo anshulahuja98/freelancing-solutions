@@ -37,6 +37,9 @@ class FreelancerRegisterForm(AbstractRegisterForm):
     def __init__(self, *args, **kwargs):
         super(FreelancerRegisterForm, self).__init__(*args, **kwargs)
         self.fields['username'].help_text = ''
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['email'].required = True
 
     class Meta:
         model = User
@@ -49,6 +52,9 @@ class EmployerRegisterForm(AbstractRegisterForm):
     def __init__(self, *args, **kwargs):
         super(EmployerRegisterForm, self).__init__(*args, **kwargs)
         self.fields['username'].help_text = ''
+        self.fields['first_name'].required = True
+        self.fields['last_name'].required = True
+        self.fields['email'].required = True
 
     class Meta:
         model = User
