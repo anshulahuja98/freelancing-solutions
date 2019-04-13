@@ -31,4 +31,6 @@ class RatingField(fields.IntegerField):
         )
         # Sends the RATINGS in the keyword arg of choices
         kwargs['choices'] = RATINGS
+        kwargs['null'] = True
+        kwargs['blank'] = True
         super(RatingField, self).__init__(*args, **kwargs)
