@@ -20,9 +20,11 @@ class FreelancerDashboardView(FreelancerRequiredMixin, UpdateView):
         'mobile',
         'description',
         'address',
-        'country'
+        'country',
+        'skills'
     )
     template_name = 'freelancer/dashboard.html'
+    success_url = '/accounts/login'
 
     def get_object(self, queryset=None):
         return get_object_or_404(Freelancer, user=self.request.user)
