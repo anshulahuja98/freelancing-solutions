@@ -3,6 +3,10 @@ from .models import Job, Bid
 
 
 class JobForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(JobForm, self).__init__(*args, **kwargs)
+        self.fields['employer'].widget = forms.HiddenInput()
+
     class Meta:
         model = Job
         exclude = ('id',)
