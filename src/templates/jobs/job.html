@@ -1,5 +1,6 @@
 {% extends base_template %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block title %}
     {{ job.title }} | Freelancing Solutions
 {% endblock %}
@@ -54,10 +55,16 @@
                             &#x20B9; {{ job.maximum_price }}
                         </div>
                     </div>
+                    <div>
+                        {% if form %}
+                                {{ form|crispy }}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css"
           rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
@@ -103,11 +110,11 @@
             font-size: medium;
         }
 
-        #job_description_container{
+        #job_description_container {
             border-top: #ffffff 0.005vh solid;
         }
 
-        #job_skill_container{
+        #job_skill_container {
             border-bottom: #ffffff 0.005vh solid;
         }
     </style>
