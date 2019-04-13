@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Job
+from .models import Job, Bid
 from accounts.models import Freelancer, Employer
 from freelancer.views import FreelancerRequiredMixin
 from employer.views import EmployerRequiredMixin
@@ -63,3 +63,16 @@ class EmployerAddedJobListView(AbstractJobListView, EmployerRequiredMixin):
     def get_queryset(self):
         employer_user_profile = Employer.objects.get(user=self.request.user)
         return Job.objects.filter(employer=employer_user_profile)
+
+
+class AbstractBidListView(LoginRequiredMixin, ListView):
+    model = Bid
+    context_object_name = 'bid_list'
+
+
+class EmployerBidListView(AbstractJobListView, EmployerRequiredMixin):
+    template_name = 'employer/bid_list.html'
+
+    def get_queryset(self):
+        employer_user_profile = Employer.objects.get(user=self.request.user)
+        return Bid.objects.filter(employer=employer_user_profile)
