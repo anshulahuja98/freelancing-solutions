@@ -4,7 +4,6 @@ from .fields import MoneyField, RatingField  # Import custom Money and Rating fi
 from django.db.models import Avg
 from uuid import uuid4
 from django.shortcuts import reverse
-from django.db.models import Q
 
 
 class Skill(models.Model):
