@@ -78,7 +78,7 @@ class FreelancerJobListView(AbstractJobListView, FreelancerRequiredMixin):
             Job - Jobs bid by current freelancer
         """
         freelancer_user_profile = Freelancer.objects.get(user=self.request.user)
-        return Job.get_jobs_by_skills(self,freelancer_user_profile)
+        return Job.get_jobs_by_skills(self, freelancer_user_profile)
 
 
 class EmployerAddedJobListView(AbstractJobListView, EmployerRequiredMixin):
