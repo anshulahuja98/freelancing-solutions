@@ -4,6 +4,7 @@ from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
 from django_countries.fields import CountryField
+from jobs.models import Skill
 
 
 class AbstractRegisterForm(UserCreationForm):
@@ -33,6 +34,7 @@ class AbstractRegisterForm(UserCreationForm):
 
 class FreelancerRegisterForm(AbstractRegisterForm):
     # profile_image = forms.ImageField()
+    skills = forms.ModelMultipleChoiceField(queryset=Skill.objects.all())
 
     def __init__(self, *args, **kwargs):
         super(FreelancerRegisterForm, self).__init__(*args, **kwargs)
