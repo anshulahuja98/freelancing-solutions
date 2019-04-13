@@ -3,7 +3,6 @@ from .models import Freelancer, Employer
 from .forms import FreelancerRegisterForm, EmployerRegisterForm
 from django.contrib.auth.views import LoginView as DefaultLoginView
 from django.shortcuts import reverse
-from jobs.models import Skill
 
 
 class LoginView(DefaultLoginView):
