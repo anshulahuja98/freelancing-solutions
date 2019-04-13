@@ -1,4 +1,5 @@
 from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Job, Bid
 from accounts.models import Freelancer, Employer
@@ -28,10 +29,12 @@ class JobFormView(EmployerRequiredMixin, CreateView):
         return super().post(request, args, kwargs)
 
 
-class JobDetailView(LoginRequiredMixin, DetailView):
+class JobDetailView(FormMixin, DetailView, LoginRequiredMixin):
     model = Job
     template_name = 'jobs/job.html'
     context_object_name = 'job'
+    form_class = BidForm
+    success_url = '/jobs/freelancer'
 
     def get_object(self, queryset=None):
         return get_object_or_404(Job, id=self.kwargs.get('id'))
@@ -43,8 +46,21 @@ class JobDetailView(LoginRequiredMixin, DetailView):
             context['base_template'] = 'employer/base.html'
         elif hasattr(self.request.user, 'freelancer'):
             context['base_template'] = 'freelancer/base.html'
-            context['form'] = BidForm
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        self.request.POST._mutable = True
+        self.request.POST.update({
+            'job': self.get_object().id,
+            'freelancer': Freelancer.objects.get(user=self.request.user).id,
+        })
+        self.request.POST._mutable = False
+        return self.form_valid(form)
+
+    def form_valid(self, form):
+        form.save()
+        return super(JobDetailView, self).form_valid(form)
 
 
 class AbstractJobListView(LoginRequiredMixin, ListView):
