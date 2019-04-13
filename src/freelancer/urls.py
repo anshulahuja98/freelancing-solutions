@@ -1,5 +1,6 @@
 from jobs.views import FreelancerBidListView
 from freelancer.views import FreelancerDashboardView
+from django.urls import path
 
 app_name = 'freelancer'
 
