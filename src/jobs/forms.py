@@ -13,6 +13,11 @@ class JobForm(forms.ModelForm):
 
 
 class BidForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BidForm, self).__init__(*args, **kwargs)
+        self.fields['freelancer'].widget = forms.HiddenInput()
+        self.fields['job'].widget = forms.HiddenInput()
+
     class Meta:
         model = Bid
         fields = ['job', 'freelancer', 'amount', 'description', 'additional_description']
