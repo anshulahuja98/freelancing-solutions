@@ -5,7 +5,7 @@ from accounts.models import Freelancer, Employer
 from freelancer.views import FreelancerRequiredMixin
 from employer.views import EmployerRequiredMixin
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
-from .forms import JobForm
+from .forms import JobForm, BidForm
 
 
 class JobFormView(EmployerRequiredMixin, CreateView):
@@ -40,6 +40,7 @@ class JobDetailView(LoginRequiredMixin, DetailView):
             context['base_template'] = 'employer/base.html'
         elif hasattr(self.request.user, 'freelancer'):
             context['base_template'] = 'freelancer/base.html'
+            context['form'] = BidForm
         return context
 
 
