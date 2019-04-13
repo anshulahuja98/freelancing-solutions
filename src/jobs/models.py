@@ -4,6 +4,7 @@ from .fields import MoneyField, RatingField  # Import custom Money and Rating fi
 from django.db.models import Avg
 from uuid import uuid4
 from django.shortcuts import reverse
+from django.db.models import Q
 
 
 class Skill(models.Model):
@@ -53,6 +54,15 @@ class Job(models.Model):
     def get_absolute_url(self):
         """Returns current job detail url"""
         return reverse("jobs:job-detail", kwargs={"id": self.id})
+
+    def get_jobs_without_accepted_bids(self):
+        accepted_bids = Bid.objects.all().filter(accepted=True).values_list('job').distinct()
+        job = Job.objects.all().difference(Job.objects.all().filter(id__in=accepted_bids))
+        return job
+
+    def get_jobs_by_skills(self, freelancer_user_profile):
+        jobs_without_bids = Job.get_jobs_without_accepted_bids(self)
+        return jobs_without_bids.filter(skills_required__in=freelancer_user_profile.skills.all()).distinct()
 
 
 class Bid(models.Model):
