@@ -1,8 +1,57 @@
 {% extends 'freelancer/base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block main %}
-    <div class="container-fluid text-center " style="padding-top: 15vh;">
-        <div class="mb-2"></div>
-        <div class="heading1">Dummy Freelancer Dashboard</div>
+    <div id="job_list_container" class="col-lg-8 col-md-9 col-sm-10 col-11 mx-auto">
+        <div class="mx-auto py-5 mt-5" style="text-align: center">
+            <h1>
+                Hi {{ request.user.first_name }}!
+            </h1>
+        </div>
+        <div style="text-align: left">
+            Update your details:
+        </div>
+        <form class="text-center" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-rounded btn-block my-3 waves-effect z-depth-0 col-8 mx-auto" type="submit">
+                Submit
+            </button>
+        </form>
     </div>
+    <style>
+        body {
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        #job_list_container {
+            min-height: calc(100vh - 80px - 56px);
+            padding: 0 5vw;
+            overflow-y: auto;
+            background: var(--main-bg-color);
+        }
+
+        label {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        #job_list_container > form > button {
+            width: max-content;
+            background: var(--btn-bg-color);
+            padding: 0.5em 1em;
+            border-radius: 10em;
+            color: white;
+            border: none;
+            font-size: medium;
+        }
+
+        #job_list_container > form > button:hover {
+            background: var(--btn-bg-hover-color) !important;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Noto+Sans" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
 {% endblock %}
