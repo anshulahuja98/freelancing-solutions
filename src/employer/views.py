@@ -14,7 +14,7 @@ class EmployerRequiredMixin(LoginRequiredMixin):
             return self.handle_no_permission()
 
 
-class DashboardView(EmployerRequiredMixin, UpdateView):
+class EmployerDashboardView(EmployerRequiredMixin, UpdateView):
     model = Employer
     fields = (
         'mobile',
@@ -23,6 +23,7 @@ class DashboardView(EmployerRequiredMixin, UpdateView):
         'country'
     )
     template_name = 'employer/dashboard.html'
+    success_url = '/accounts/login'
 
     def get_object(self, queryset=None):
         return get_object_or_404(Employer, user=self.request.user)
