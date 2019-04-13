@@ -14,10 +14,12 @@ class JobFormView(EmployerRequiredMixin, CreateView):
     success_url = '/jobs/employer'
 
     def form_valid(self, form):
+        """Redirects to Employer's Job list page"""
         form.save()
         return HttpResponseRedirect(self.success_url)
 
     def post(self, request, *args, **kwargs):
+        """Update the employer field with current user while submitting form"""
         self.request.POST._mutable = True
         self.request.POST.update({
             'employer': Employer.objects.get(user=self.request.user).id,
@@ -35,6 +37,7 @@ class JobDetailView(LoginRequiredMixin, DetailView):
         return get_object_or_404(Job, id=self.kwargs.get('id'))
 
     def get_context_data(self, **kwargs):
+        """Updates base template in context based on logged in user"""
         context = super(JobDetailView, self).get_context_data(**kwargs)
         if hasattr(self.request.user, 'employer'):
             context['base_template'] = 'employer/base.html'
@@ -53,6 +56,11 @@ class FreelancerJobListView(AbstractJobListView, FreelancerRequiredMixin):
     template_name = 'freelancer/job_list.html'
 
     def get_queryset(self):
+        """Gets current freelancer user profile
+
+        Returns:
+            Job - Jobs bid by current freelancer
+        """
         freelancer_user_profile = Freelancer.objects.get(user=self.request.user)
         return Job.objects.filter(skills_required__in=freelancer_user_profile.skills.all()).distinct()
 
@@ -61,6 +69,11 @@ class EmployerAddedJobListView(AbstractJobListView, EmployerRequiredMixin):
     template_name = 'employer/job_list.html'
 
     def get_queryset(self):
+        """Gets current employer user profile
+
+        Returns:
+            Job - Jobs created by current employer
+        """
         employer_user_profile = Employer.objects.get(user=self.request.user)
         return Job.objects.filter(employer=employer_user_profile)
 
