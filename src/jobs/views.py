@@ -70,6 +70,14 @@ class AbstractBidListView(LoginRequiredMixin, ListView):
     context_object_name = 'bid_list'
 
 
+class FreelancerBidListView(AbstractJobListView, FreelancerRequiredMixin):
+    template_name = 'freelancer/bid_list.html'
+
+    def get_queryset(self):
+        freelancer_user_profile = Freelancer.objects.get(user=self.request.user)
+        return Bid.objects.filter(freelancer=freelancer_user_profile)
+
+
 class EmployerBidListView(AbstractJobListView, EmployerRequiredMixin):
     template_name = 'employer/bid_list.html'
 
