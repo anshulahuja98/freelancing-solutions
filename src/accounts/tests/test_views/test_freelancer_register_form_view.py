@@ -34,7 +34,7 @@ class TestFreelancerRegisterFormView(TestCase):
             'skills': self.skills
         }
 
-    def test_job_form_is_valid(self):
+    def test_freelancer_register_form_is_valid(self):
         form = FreelancerRegisterForm(data=self.form_data)
         self.assertTrue(form.is_valid())
 
@@ -56,12 +56,12 @@ class TestFreelancerRegisterFormView(TestCase):
         form = FreelancerRegisterForm(data=self.form_data)
         self.assertFalse(form.is_valid())
 
-    def test_job_form_valid_function(self):
+    def test_freelancer_register_form_valid_function(self):
         form = FreelancerRegisterForm(data=self.form_data)
         url = FreelancerRegisterFormView.form_valid(FreelancerRegisterFormView(), form).url
         self.assertEqual(reverse('accounts:login'), url)
 
-    def test_job_form_is_invalid(self):
+    def test_freelancer_register_form_is_invalid(self):
         self.form_data = {
             'first_name': 'test_fn',
             'last_name': 'test_ln',
