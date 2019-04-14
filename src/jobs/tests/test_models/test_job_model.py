@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django_countries import countries
 import tempfile
 from django.db.models import Avg
+from django.urls import reverse
 
 
 class TestJobModel(TestCase):
@@ -94,3 +95,7 @@ class TestJobModel(TestCase):
     def test_get_average_bid(self):
         average_bid = Bid.objects.all().filter(job=self.job).aggregate(Avg('amount'))['amount__avg']
         self.assertEquals(self.job.get_average_bid, average_bid)
+
+    def test_get_absolute_url(self):
+        url = reverse("jobs:job-detail", kwargs={"id": self.job.id})
+        self.assertEquals(self.job.get_absolute_url(), url)
