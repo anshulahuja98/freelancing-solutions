@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-from accounts.models import Employer
+from accounts.models import Employer, Freelancer
 from jobs.models import Skill, Job
 from django_countries import countries
 from jobs.views import JobDetailView
@@ -53,3 +53,25 @@ class TestJobDetailView(TestCase):
     def test_job_dont_exist(self):
         with self.assertRaises(Http404):
             get_object_or_404(Job, id=uuid.uuid4())
+
+    def test_get_context_data_employer(self):
+        emp_test_user = User.objects.create_user(username='emp_testuser', password='1X<ISRUkw+tuK')
+        emp_test_user.save()
+        self.client.login(username='emp_testuser', password='1X<ISRUkw+tuK')
+
+        self.emp = Employer.objects.create(
+            user=emp_test_user
+        )
+        response = self.client.get(reverse('jobs:job-detail', kwargs={'id': str(self.job.id)}))
+        self.assertEqual(response.context_data['base_template'], 'employer/base.html')
+
+    def test_get_context_data_freelancer(self):
+        fr_test_user = User.objects.create_user(username='fr_testuser', password='1X<ISRUkw+tuK')
+        fr_test_user.save()
+        self.client.login(username='fr_testuser', password='1X<ISRUkw+tuK')
+
+        self.fr = Freelancer.objects.create(
+            user=fr_test_user
+        )
+        response = self.client.get(reverse('jobs:job-detail', kwargs={'id': str(self.job.id)}))
+        self.assertEqual(response.context_data['base_template'], 'freelancer/base.html')
