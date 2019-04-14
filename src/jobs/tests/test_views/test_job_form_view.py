@@ -66,7 +66,6 @@ class TestJobFormView(TestCase):
             user=fr_test_user
         )
         response = self.client.get(reverse('jobs:job-form'))
-        print(response)
         self.assertNotEqual(response.status_code, 200)
         self.assertEqual(response.status_code, 403)
         self.assertTemplateNotUsed(response, 'jobs/form.html')

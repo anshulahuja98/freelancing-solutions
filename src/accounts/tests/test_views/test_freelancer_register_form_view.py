@@ -1,12 +1,9 @@
 from django.test import TestCase, Client
-from django.contrib.auth.models import User
 from django.urls import reverse
 from jobs.models import Skill
-from accounts.models import Employer, Freelancer
 from accounts.forms import FreelancerRegisterForm
 from accounts.views import FreelancerRegisterFormView
 from django_countries import countries
-import tempfile
 
 
 class TestFreelancerRegisterFormView(TestCase):
