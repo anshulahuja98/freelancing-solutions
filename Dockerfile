@@ -11,3 +11,6 @@ RUN pip3 install pipenv
 RUN pipenv install --system --deploy
 WORKDIR /dist/src
 
+
+ENTRYPOINT ["/entrypoint.sh"]
+
