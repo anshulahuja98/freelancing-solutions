@@ -11,6 +11,9 @@ RUN pip3 install pipenv
 RUN pipenv install --system --deploy
 WORKDIR /dist/src
 
+EXPOSE 8000
+
 RUN chmod +x /dist/entrypoint.sh
 ENTRYPOINT ["/dist/entrypoint.sh"]
+
 
