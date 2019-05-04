@@ -14,3 +14,7 @@ A freelancing platform project for course *CS223(Software Engineering)*
     ```
    This will start the server exposed at port 80 of your system
 
+1. To connect to the shell of the container
+    ```
+    docker exec -it <container-name> /bin/bash
+    ```
