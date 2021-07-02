@@ -16,4 +16,4 @@ EXPOSE 8000
 RUN chmod +x /dist/entrypoint.sh
 ENTRYPOINT ["/dist/entrypoint.sh"]
 
-
+SJnmsax jmxs mxna sbjxsamnjxmA 
